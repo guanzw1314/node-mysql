@@ -1,0 +1,29 @@
+{
+  "name": "node-mysql",
+  "version": "1.0.0",
+  "description": "函数化mysql操作",
+  "main": "index.js",
+  "scripts": {
+    "test": "ts-node index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/guanzw1314/node-mysql.git"
+  },
+  "keywords": [
+    "mysql",
+    "node"
+  ],
+  "author": "GObserver",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/guanzw1314/node-mysql/issues"
+  },
+  "homepage": "https://github.com/guanzw1314/node-mysql#readme",
+  "dependencies": {
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "@types/mysql": "^2.15.21"
+  }
+}
