@@ -4,26 +4,29 @@
   "description": "函数化mysql操作",
   "main": "index.js",
   "scripts": {
-    "test": "ts-node index.ts"
+    "test": "ts-node src/index.ts",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/guanzw1314/node-mysql.git"
+    "url": "https://github.com/guanzw893/node-mysql.git"
   },
   "keywords": [
     "mysql",
-    "node"
+    "node",
+    "typescript"
   ],
   "author": "GObserver",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/guanzw1314/node-mysql/issues"
+    "url": "https://github.com/guanzw893/node-mysql/issues"
   },
-  "homepage": "https://github.com/guanzw1314/node-mysql#readme",
+  "homepage": "https://github.com/guanzw893/node-mysql#readme",
   "dependencies": {
     "mysql": "^2.18.1"
   },
   "devDependencies": {
-    "@types/mysql": "^2.15.21"
+    "@types/mysql": "^2.15.21",
+    "typescript": "^4.9.5"
   }
 }
