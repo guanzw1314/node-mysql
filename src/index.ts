@@ -4,7 +4,7 @@ interface Params extends Record<string, string | number> {}
 type Sort = 'asc' | 'desc' | 'ASC' | 'DESC'
 interface OrderByParams extends Record<string, Sort> {}
 
-export default class NodeMysql {
+export class NodeMysql {
   private db: Connection
   private _table = ''
   private _column = '*'

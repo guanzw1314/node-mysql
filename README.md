@@ -1,7 +1,13 @@
 ## 安装
 
 ```bash
-npm install node-mysql
+npm install mysql-node-ts
+```
+
+## 引入
+
+```js
+import { NodeMysql } from 'mysql-node-ts'
 ```
 
 ## 连接数据库

@@ -1,4 +1,4 @@
-import NodeMysql from '../src'
+import { NodeMysql } from '../src'
 
 const db = new NodeMysql({
   host: '127.0.0.1',
