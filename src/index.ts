@@ -36,13 +36,22 @@ export class NodeMysql {
   }
 
   /**
-   * 数据表
-   * @param name 表名
+   * @name 数据表
+   * @description 字符串形式
+   * @param name 字段字符串
    * @example
    * table('user')
    * table('user,order,...')
+   */
+  table(name: string): this
+  /**
+   * @name 数据表
+   * @description 参数形式
+   * @param name 字段数组
+   * @example
    * table('user', 'order', ...)
    */
+  table(...name: string[]): this
   table(...names: string[]) {
     this._table = names.join(',')
 
@@ -50,13 +59,22 @@ export class NodeMysql {
   }
 
   /**
-   * 自定表字段
-   * @param field 字段
+   * @name 字段
+   * @description 字符串形式
+   * @param field 字段字符串
    * @example
    * column('username')
    * column('id,username,...')
+   */
+  column(field: string): this
+  /**
+   * @name 字段
+   * @description 参数形式
+   * @param field 字段数组
+   * @example
    * column('id', 'username', ...)
    */
+  column(...field: string[]): this
   column(...field: string[]) {
     this._column = field.join(',')
 
@@ -64,18 +82,40 @@ export class NodeMysql {
   }
 
   /**
-   * 条件
-   * @param params 条件参数
-   * @param args [运算符|条件的值]
+   * @name 条件
+   * @description 字符串形式
+   * @param params 条件参数字符串
    * @example
-   * id = 1
-   * where('id = 1')
+   * where('id = 1 and id < 3 ...')
+   */
+  where(params: string): this
+  /**
+   * @name 条件
+   * @description 键值对形式
+   * @param key 键
+   * @param value 值
+   * @example
    * where('id', 1)
-   * where({ id: 1, username: '', ... })
-   * id > 1
-   * where('id > 1')
+   */
+  where(key: string, value: string | number): this
+  /**
+   * @name 条件
+   * @description 自定义运算符
+   * @param key 键
+   * @param oper 运算符
+   * @param value 值
+   * @example
    * where('id', '>', 1)
    */
+  where(key: string, oper: string, value: string | number): this
+  /**
+   * @name 条件
+   * @description 对象参数形式
+   * @param params 条件参数对象
+   * @example
+   * where({ id: 1, username: '', ... })
+   */
+  where(params: Params): this
   where(params: Params | string, ...args: Array<string | number>) {
     let paramsStr = ''
 
@@ -97,17 +137,38 @@ export class NodeMysql {
   }
 
   /**
-   * 或条件
-   * @param params 条件参数
-   * @param args [运算符|条件的值]
+   * @name 或条件
+   * @description 字符串形式
+   * @param params 条件参数字符串
    * @example
-   * id = 1
-   * where('id = 1')
-   * where('id', 1)
-   * where({ id: 1, username: '', ... })
-   * id > 1
-   * where('id > 1')
-   * where('id', '>', 1)
+   * orWhere('id = 1 and id < 3 ...')
+   */
+  orWhere(params: string): this
+  /**
+   * @name 或条件
+   * @description 键值对形式
+   * @param key 键
+   * @param value 值
+   * @example
+   * orWhere('id', 1)
+   */
+  orWhere(key: string, value: string | number): this
+  /**
+   * @name 或条件
+   * @description 自定义运算符
+   * @param key 键
+   * @param oper 运算符
+   * @param value 值
+   * @example
+   * orWhere('id', '>', 1)
+   */
+  orWhere(key: string, oper: string, value: string | number): this
+  /**
+   * @name 或条件
+   * @description 对象参数形式
+   * @param params 条件参数对象
+   * @example
+   * orWhere({ id: 1, username: '', ... })
    */
   orWhere(params: Params | string, ...args: Array<string | number>) {
     let paramsStr = ''
@@ -130,15 +191,29 @@ export class NodeMysql {
   }
 
   /**
-   * 排序
-   * @param params 排序参数
-   * @param sort 排序
+   * @name 排序
+   * @description 字符串形式
+   * @param params 排序参数字符串
    * @example
-   * id asc
-   * orderBy('id asc')
+   * orderBy('id asc, uid desc, ...')
+   */
+  orderBy(params: string): this
+  /**
+   * @name 排序
+   * @description 键值对形式
+   * @param params 排序参数对象
+   * @example
    * orderBy('id', 'asc')
+   */
+  orderBy(kay: string, sort: Sort): this
+  /**
+   * @name 排序
+   * @description 对象参数形式
+   * @param params 排序参数对象
+   * @example
    * orderBy({ id: 'asc', uid: 'desc', ... })
    */
+  orderBy(params: OrderByParams): this
   orderBy(params: OrderByParams | string, sort?: Sort) {
     let paramsStr = ''
     if (typeof params === 'string' && sort) {
@@ -158,7 +233,7 @@ export class NodeMysql {
   }
 
   /**
-   * 限制范围
+   * @name 分页
    * @param index 开始索引
    * @param size 数据条数
    */
@@ -169,7 +244,7 @@ export class NodeMysql {
   }
 
   /**
-   * 执行 SQL
+   * @name 执行SQL
    * @param sql 执行语句
    * @param params 参数配置
    */
@@ -183,7 +258,7 @@ export class NodeMysql {
   }
 
   /**
-   * 查询
+   * @name 查询
    */
   find() {
     const { _table, _column, _where, _orderBy, _limit } = this
@@ -198,7 +273,7 @@ export class NodeMysql {
   }
 
   /**
-   * 创建
+   * @name 创建
    * @param params 创建参数
    */
   create(params: Params) {
@@ -211,7 +286,7 @@ export class NodeMysql {
   }
 
   /**
-   * 修改
+   * @name 修改
    * @param params 修改参数
    */
   update(params: Params) {
@@ -225,7 +300,7 @@ export class NodeMysql {
   }
 
   /**
-   * 删除
+   * @name 删除
    */
   delete() {
     const { _table, _where } = this
